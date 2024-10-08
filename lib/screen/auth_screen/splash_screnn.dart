@@ -13,9 +13,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomrScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     });
 
     super.initState();
@@ -26,10 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: mainColor,
       body: Center(
-          child: Image.asset(
-        "assets/logo/marvelLogo.png",
-        width: getSize(context).width * 0.8,
-      )),
+        child: Image.asset(
+          "assets/logo/marvelLogo.png",
+          width: getSize(context).width * 0.8,
+        ),
+      ),
     );
   }
 }

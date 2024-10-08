@@ -8,18 +8,24 @@ class MovieProvider extends BaseProvider {
 
   getMovies() async {
     setProcess(true);
-    final Response =
+    final response =
         await api.getRequest("https://mcuapi.herokuapp.com/api/v1/movies");
-    if (Response.statusCode == 200) {
-      var decodedData = json.decode(Response.body)['data'];
+    if (response.statusCode == 200) {
+      setError(false);
+      var decodedData = json.decode(response.body)['data'];
 
-      for (var x in decodedData) {
-        listmovies.add(MoviesModel.fromJson(x));
-      }
+// the two piece of code has the same functionality
+//
+//
+      // for (var x in decodedData) {
+      //   listmovies.add(MoviesModel.fromJson(x));
+      // }
 
       listmovies = List<MoviesModel>.from(
           decodedData.map((item) => MoviesModel.fromJson(item))).toList();
-    } else {}
+    } else {
+      setError(true);
+    }
     setProcess(false);
   }
 }
