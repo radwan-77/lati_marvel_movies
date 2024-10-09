@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lati_marvel_movies/helper/consts.dart';
+import 'package:lati_marvel_movies/provider/authentication_provider.dart';
 import 'package:lati_marvel_movies/provider/base_provoder.dart';
 import 'package:lati_marvel_movies/provider/movie_provider.dart';
+import 'package:lati_marvel_movies/screen/auth_screen/login_screen.dart';
 import 'package:lati_marvel_movies/screen/auth_screen/splash_screnn.dart';
+import 'package:lati_marvel_movies/screen/main_screen/home_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -37,6 +40,31 @@ class MyApp extends StatelessWidget {
                 centerTitle: true),
           ),
           home: SplashScreen()),
+    );
+  }
+}
+
+
+class ScreenRouter extends StatefulWidget {
+  const ScreenRouter({super.key});
+
+  @override
+  State<ScreenRouter> createState() => _ScreenRouterState();
+}
+
+class _ScreenRouterState extends State<ScreenRouter> {
+  @override
+  void initState() {
+    Provider.of<AuthenticationProvider>(context , listen: false).initializeAuthProvider();
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthenticationProvider>(
+      builder: (context, auth, child) {
+        return AnimatedSwitcher(duration: animationDuration,
+        child: auth.authenticated ? HomeScreen() : LoginScreen(),);
+      }
     );
   }
 }

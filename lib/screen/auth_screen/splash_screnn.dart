@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lati_marvel_movies/helper/consts.dart';
 import 'package:lati_marvel_movies/helper/function_helper.dart';
+import 'package:lati_marvel_movies/main.dart';
 import 'package:lati_marvel_movies/screen/main_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => ScreenRouter()));
     });
 
     super.initState();
